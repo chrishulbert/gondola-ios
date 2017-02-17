@@ -133,6 +133,8 @@ class TVShowSeasonsView: UIView {
         
         super.init(frame: CGRect.zero)
         
+        backgroundColor = UIColor.black
+        
         background.contentMode = .scaleAspectFill
         background.alpha = 0
         background.clipsToBounds = true
