@@ -18,6 +18,7 @@ class MoviesViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        tabBarItem.image = #imageLiteral(resourceName: "Movie")
         title = "Movies"
     }
     

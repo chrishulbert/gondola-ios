@@ -18,6 +18,7 @@ class TVViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        tabBarItem.image = #imageLiteral(resourceName: "TV")
         title = "TV"
     }
     

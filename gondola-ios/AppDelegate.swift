@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nav.navigationBar.isHidden = true
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.tintColor = UIColor.white
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
