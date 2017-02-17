@@ -27,6 +27,9 @@ class TVEpisodeViewController: UIViewController {
         self.backdrop = backdrop
         
         super.init(nibName: nil, bundle: nil)
+        
+        title = episode.name
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(tapPlay))
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -42,13 +45,10 @@ class TVEpisodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rootView.title.text = episode.name
         rootView.overview.text = episode.overview
         rootView.background.image = backdrop
         rootView.episodeImage.image = episodeImage
         rootView.details.text = season.name + "\nEpisode \(episode.episode)\nAir date: \(episode.airDate)\nVote: \(episode.vote)"
-        
-        rootView.play.addTarget(self, action: #selector(tapPlay), for: .primaryActionTriggered)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -70,11 +70,9 @@ class TVEpisodeView: UIView {
     
     let background = UIImageView()
     let dim = UIView()
-    let title = UILabel()
     let overview = UILabel()
     let episodeImage = UIImageView()
     let details = UILabel()
-    let play = UIButton(type: .system)
     
     init() {
         super.init(frame: CGRect.zero)
@@ -86,12 +84,8 @@ class TVEpisodeView: UIView {
         dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
         addSubview(dim)
         
-        title.textColor = UIColor.white
-        title.font = UIFont.systemFont(ofSize: 60, weight: UIFontWeightThin)
-        addSubview(title)
-        
         overview.textColor = UIColor.white
-        overview.font = UIFont.systemFont(ofSize: 30, weight: UIFontWeightLight)
+        overview.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightLight)
         overview.numberOfLines = 0
         addSubview(overview)
 
@@ -100,11 +94,8 @@ class TVEpisodeView: UIView {
         
         details.textColor = UIColor(white: 1, alpha: 0.7)
         details.numberOfLines = 0
-        details.font = UIFont.systemFont(ofSize: 25, weight: UIFontWeightLight)
+        details.font = UIFont.systemFont(ofSize: 11, weight: UIFontWeightLight)
         addSubview(details)
-        
-        play.setTitle("Play", for: .normal)
-        addSubview(play)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -118,14 +109,8 @@ class TVEpisodeView: UIView {
         
         background.frame = bounds
         dim.frame = bounds
-
-        // Top row.
-        title.frame = CGRect(x: LayoutHelpers.sideMargins,
-                             y: LayoutHelpers.vertMargins,
-                             width: w - 2*LayoutHelpers.sideMargins,
-                             height: ceil(title.font.lineHeight))
         
-        // Image under it.
+        // Image.
         let imageWidth = round(w * 0.35)
         let aspect: CGFloat
         if let image = episodeImage.image, image.size.width > 0 {
@@ -134,7 +119,8 @@ class TVEpisodeView: UIView {
             aspect = 0
         }
         let imageHeight = round(imageWidth * aspect)
-        episodeImage.frame = CGRect(x: LayoutHelpers.sideMargins, y: title.frame.maxY + 40, width: imageWidth, height: imageHeight)
+        episodeImage.frame = CGRect(x: LayoutHelpers.sideMargins, y: 64 + LayoutHelpers.vertMargins,
+                                    width: imageWidth, height: imageHeight)
         
         // Details under image.
         let detailsTop = episodeImage.frame.maxY + 40
@@ -157,12 +143,6 @@ class TVEpisodeView: UIView {
                                 y: overviewTop,
                                 width: overviewWidth,
                                 height: overviewHeight)
-        
-        // Center bottom.
-        let playSize = play.intrinsicContentSize
-        play.frame = CGRect(origin: CGPoint(x: round(w/2 - playSize.width/2),
-                                            y: round(h - LayoutHelpers.vertMargins - playSize.height - 8)), // -8 to compensate for focus growth
-                            size: playSize)
     }
     
 }

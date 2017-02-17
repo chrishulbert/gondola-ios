@@ -167,7 +167,7 @@ class TVShowSeasonsView: UIView {
         
         let overviewTop = 64 + LayoutHelpers.vertMargins
         let overviewBottom = collection.frame.minY - LayoutHelpers.vertMargins
-        let overviewWidth = (w - LayoutHelpers.sideMargins)/2
+        let overviewWidth = w - LayoutHelpers.sideMargins*2
         let maxOverviewHeight = overviewBottom - overviewTop
         let textOverviewHeight = ceil(overview.sizeThatFits(CGSize(width: overviewWidth, height: 999)).height)
         let overviewHeight = min(textOverviewHeight, maxOverviewHeight)
