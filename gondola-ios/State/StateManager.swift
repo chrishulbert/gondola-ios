@@ -16,15 +16,24 @@ class StateManager {
     
     var rootNav: UINavigationController!
     
-    func appLaunch() {
+    func appLaunch(loading: LoadingViewController) {
+        let start = CACurrentMediaTime()
         requestMetadataUntilSuccess { metadata in
             DispatchQueue.main.async {
                 self.metadata = metadata
-                let tv = TVViewController(metadata: metadata)
-                let movies = MoviesViewController(metadata: metadata)
-                let tab = UITabBarController()
-                tab.viewControllers = [movies, tv]
-                self.rootNav.setViewControllers([tab], animated: true)
+
+                // This usually finishes before the intro fade animation does, so allow it to finish.
+                let end = CACurrentMediaTime()
+                let duration = end - start
+                let remainingDelay = 0.5 - duration
+                let effectiveDelay = max(0, remainingDelay)
+                DispatchQueue.main.asyncAfter(deadline: .now() + effectiveDelay) {
+                    let tv = TVViewController(metadata: metadata)
+                    let movies = MoviesViewController(metadata: metadata)
+                    let tab = UITabBarController()
+                    tab.viewControllers = [movies, tv]
+                    self.rootNav.setViewControllers([tab], animated: true)
+                }
             }
         }
     }

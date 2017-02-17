@@ -55,8 +55,9 @@ class TVEpisodeViewController: UIViewController {
         guard let url = ServiceHelpers.url(path: episode.media) else { return }
         let vc = AVPlayerViewController()
         vc.player = AVPlayer(url: url)
-        present(vc, animated: true, completion: nil)
-        vc.player?.play() // Play before the completion block so it starts loading sooner.
+        present(vc, animated: true, completion: { [weak vc] in
+            vc?.player?.play()
+        })
     }
     
 }
