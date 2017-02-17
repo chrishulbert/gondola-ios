@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let loading = LoadingViewController()
         let nav = UINavigationController(rootViewController: loading)
+        nav.navigationBar.barStyle = .blackOpaque // For white status items.
         nav.navigationBar.isHidden = true
         
         window = UIWindow(frame: UIScreen.main.bounds)

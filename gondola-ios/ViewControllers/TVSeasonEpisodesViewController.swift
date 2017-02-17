@@ -46,6 +46,10 @@ class TVSeasonEpisodesViewController: UIViewController {
         rootView.background.image = backdrop
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
 
 extension TVSeasonEpisodesViewController: UICollectionViewDataSource {

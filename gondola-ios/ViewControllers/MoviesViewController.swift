@@ -40,6 +40,10 @@ class MoviesViewController: UIViewController {
         rootView.collection.delegate = self
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
 
 extension MoviesViewController: UICollectionViewDataSource {

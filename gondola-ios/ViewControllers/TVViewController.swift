@@ -40,6 +40,10 @@ class TVViewController: UIViewController {
         rootView.collection.delegate = self
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
 }
 
 extension TVViewController: UICollectionViewDataSource {

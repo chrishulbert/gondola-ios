@@ -57,6 +57,10 @@ class TVShowSeasonsViewController: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
 
 extension TVShowSeasonsViewController: UICollectionViewDataSource {

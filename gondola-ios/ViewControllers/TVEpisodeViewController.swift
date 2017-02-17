@@ -51,6 +51,10 @@ class TVEpisodeViewController: UIViewController {
         rootView.play.addTarget(self, action: #selector(tapPlay), for: .primaryActionTriggered)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     func tapPlay() {
         guard let url = ServiceHelpers.url(path: episode.media) else { return }
         let vc = AVPlayerViewController()

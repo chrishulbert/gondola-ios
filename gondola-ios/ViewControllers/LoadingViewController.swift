@@ -35,7 +35,7 @@ class LoadingViewController: UIViewController {
         
         // Start animating in the blurred version.
         UIView.animate(withDuration: 0.4) {
-            self.rootView.launchImage.alpha = 0
+            self.rootView.blurImage.alpha = 1
         }
         
         // Spin if it takes ages.
@@ -60,6 +60,10 @@ class LoadingViewController: UIViewController {
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func tapHelp() {
         let a = UIAlertController(title: "Help",
                                   message: "Gondola is a media player that connects to a local server.\nIf you'd like to find more information about how to set up your server, please feel free to review the instructions at:\n\nsplinter.com.au/gondola",
@@ -72,21 +76,23 @@ class LoadingViewController: UIViewController {
 
 class LoadingView: UIView {
     
+    let sharpImage = UIImageView(image: #imageLiteral(resourceName: "BackSharp"))
     let blurImage = UIImageView(image: #imageLiteral(resourceName: "Background"))
-    let logoImage = UIImageView(image: #imageLiteral(resourceName: "LaunchLogo"))
-    let launchImage = UIImageView(image: UIImage(named: "LaunchImage"))
+    let logoImage = UIImageView(image: #imageLiteral(resourceName: "LogoLaunch"))
     let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
     let help = UIButton(type: .system)
     
     init() {
         super.init(frame: CGRect.zero)
 
+        addSubview(sharpImage)
+        
+        blurImage.alpha = 0
         addSubview(blurImage)
         
         logoImage.contentMode = .center
         addSubview(logoImage)
         
-        addSubview(launchImage)
         addSubview(indicator)
         
         help.setTitle("Help", for: .normal)
@@ -101,10 +107,10 @@ class LoadingView: UIView {
         super.layoutSubviews()
         let w = bounds.width
         let h = bounds.height
-        
+
+        sharpImage.frame = bounds
         blurImage.frame = bounds
         logoImage.frame = bounds
-        launchImage.frame = bounds
         indicator.center = CGPoint(x: w/2, y: round(h*3/4))
         
         // Center bottom.
