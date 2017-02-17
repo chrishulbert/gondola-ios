@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		832DED001E56871B009585CE /* MetadataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFC1E56871B009585CE /* MetadataService.swift */; };
+		832DED011E56871B009585CE /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFD1E56871B009585CE /* Models.swift */; };
+		832DED021E56871B009585CE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFE1E56871B009585CE /* Result.swift */; };
+		832DED031E56871B009585CE /* ServiceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFF1E56871B009585CE /* ServiceHelpers.swift */; };
 		8396787C1E56822D00A6B6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8396787B1E56822D00A6B6B2 /* AppDelegate.swift */; };
 		839678831E56822D00A6B6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839678821E56822D00A6B6B2 /* Assets.xcassets */; };
 		839678861E56822D00A6B6B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839678841E56822D00A6B6B2 /* LaunchScreen.storyboard */; };
@@ -24,6 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		832DECFC1E56871B009585CE /* MetadataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataService.swift; sourceTree = "<group>"; };
+		832DECFD1E56871B009585CE /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		832DECFE1E56871B009585CE /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		832DECFF1E56871B009585CE /* ServiceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceHelpers.swift; sourceTree = "<group>"; };
 		839678781E56822D00A6B6B2 /* gondola-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gondola-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8396787B1E56822D00A6B6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839678821E56822D00A6B6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +60,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		832DECFB1E56871B009585CE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				832DECFC1E56871B009585CE /* MetadataService.swift */,
+				832DECFD1E56871B009585CE /* Models.swift */,
+				832DECFE1E56871B009585CE /* Result.swift */,
+				832DECFF1E56871B009585CE /* ServiceHelpers.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		8396786F1E56822D00A6B6B2 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +92,7 @@
 		8396787A1E56822D00A6B6B2 /* gondola-ios */ = {
 			isa = PBXGroup;
 			children = (
+				832DECFB1E56871B009585CE /* Services */,
 				8396787B1E56822D00A6B6B2 /* AppDelegate.swift */,
 				839678821E56822D00A6B6B2 /* Assets.xcassets */,
 				839678841E56822D00A6B6B2 /* LaunchScreen.storyboard */,
@@ -194,6 +214,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				832DED031E56871B009585CE /* ServiceHelpers.swift in Sources */,
+				832DED011E56871B009585CE /* Models.swift in Sources */,
+				832DED001E56871B009585CE /* MetadataService.swift in Sources */,
+				832DED021E56871B009585CE /* Result.swift in Sources */,
 				8396787C1E56822D00A6B6B2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +420,7 @@
 				839678971E56822D00A6B6B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		839678981E56822D00A6B6B2 /* Build configuration list for PBXNativeTarget "gondola-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +429,7 @@
 				8396789A1E56822D00A6B6B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
