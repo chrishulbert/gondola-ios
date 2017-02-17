@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         StateManager.shared.rootNav = nav
         StateManager.shared.appLaunch(loading: loading)
         
-//        todo make the text more readable, background darker, all thru
 //        TODO make cells fade in when images load.
 
         return true

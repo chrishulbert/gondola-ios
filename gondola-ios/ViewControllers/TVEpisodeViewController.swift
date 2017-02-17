@@ -80,9 +80,10 @@ class TVEpisodeView: UIView {
         super.init(frame: CGRect.zero)
         
         background.contentMode = .scaleAspectFill
+        background.clipsToBounds = true
         addSubview(background)
         
-        dim.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
         addSubview(dim)
         
         title.textColor = UIColor.white

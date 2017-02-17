@@ -21,6 +21,9 @@ class TVSeasonEpisodesViewController: UIViewController {
         self.backdrop = backdrop
         
         super.init(nibName: nil, bundle: nil)
+
+        title = season.name
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -41,7 +44,6 @@ class TVSeasonEpisodesViewController: UIViewController {
         rootView.collection.dataSource = self
         rootView.collection.delegate = self
         
-        rootView.title.text = season.name
         rootView.overview.text = season.overview
         rootView.background.image = backdrop
     }
@@ -106,37 +108,39 @@ class TVSeasonEpisodesView: UIView {
     
     let background = UIImageView()
     let dim = UIView()
-    let title = UILabel()
     let overview = UILabel()
     let collection: UICollectionView
     let layout = UICollectionViewFlowLayout()
     
     init() {
+        let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+
         // TODO have a layout helper.
         layout.scrollDirection = .vertical
-        let itemHeight = PictureCell.height(forWidth: K.itemWidth, imageAspectRatio: 9/16)
-        layout.itemSize = CGSize(width: K.itemWidth, height: itemHeight)
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.vertMargins, left: LayoutHelpers.sideMargins, bottom: LayoutHelpers.vertMargins, right: LayoutHelpers.sideMargins)
+        let itemWidth = round(width/2) - LayoutHelpers.sideMargins - LayoutHelpers.paddingH
+        let itemHeight = PictureCell.height(forWidth: itemWidth, imageAspectRatio: 9/16)
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.minimumLineSpacing = LayoutHelpers.paddingV
+        layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.vertMargins + 64,
+                                           left: LayoutHelpers.paddingH,
+                                           bottom: LayoutHelpers.vertMargins + 50,
+                                           right: LayoutHelpers.sideMargins)
         
         collection = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        collection.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
+        collection.backgroundColor = nil
+        collection.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         
         super.init(frame: CGRect.zero)
         
         background.contentMode = .scaleAspectFill
+        background.clipsToBounds = true
         addSubview(background)
         
-        dim.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
         addSubview(dim)
         
-        title.textColor = UIColor.white
-        title.font = UIFont.systemFont(ofSize: 60, weight: UIFontWeightThin)
-        addSubview(title)
-        
         overview.textColor = UIColor.white
-        overview.font = UIFont.systemFont(ofSize: 30, weight: UIFontWeightLight)
+        overview.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightLight)
         overview.numberOfLines = 0
         addSubview(overview)
         
@@ -154,20 +158,15 @@ class TVSeasonEpisodesView: UIView {
         
         background.frame = bounds
         
-        let collectionWidth = K.itemWidth + 2*LayoutHelpers.sideMargins
+        let collectionWidth = round(w/2)
         collection.frame = CGRect(x: w - collectionWidth, y: 0, width: collectionWidth, height: h)
         
         dim.frame = CGRect(x: 0, y: 0, width: w - collectionWidth, height: h)
         
         let textWidth = w - collectionWidth - 2*LayoutHelpers.sideMargins
         
-        title.frame = CGRect(x: LayoutHelpers.sideMargins,
-                             y: LayoutHelpers.vertMargins,
-                             width: textWidth,
-                             height: ceil(title.font.lineHeight))
-        
-        let overviewTop = title.frame.maxY + 40
-        let overviewBottom = h - LayoutHelpers.vertMargins
+        let overviewTop = 64 + LayoutHelpers.vertMargins
+        let overviewBottom = h - 50 - LayoutHelpers.vertMargins
         let overviewWidth = textWidth
         let maxOverviewHeight = overviewBottom - overviewTop
         let textOverviewHeight = ceil(overview.sizeThatFits(CGSize(width: overviewWidth, height: 999)).height)
@@ -176,10 +175,6 @@ class TVSeasonEpisodesView: UIView {
                                 y: overviewTop,
                                 width: overviewWidth,
                                 height: overviewHeight)
-    }
-    
-    struct K {
-        static let itemWidth: CGFloat = round(UIScreen.main.bounds.width/4)
     }
     
 }

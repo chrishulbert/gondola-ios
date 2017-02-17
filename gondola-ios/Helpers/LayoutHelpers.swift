@@ -11,4 +11,6 @@ import UIKit
 struct LayoutHelpers {
     static let vertMargins: CGFloat = 20
     static let sideMargins: CGFloat = 20
+    static let paddingH: CGFloat = 10
+    static let paddingV: CGFloat = 20
 }

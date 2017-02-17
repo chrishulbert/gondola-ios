@@ -19,7 +19,9 @@ class TVViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         tabBarItem.image = #imageLiteral(resourceName: "TV")
-        title = "TV"
+        tabBarItem.title = "TV"
+        navigationItem.title = "Gondola"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -97,17 +99,17 @@ class TVView: UIView {
     let collection: UICollectionView
     
     init() {
-        let size = UIScreen.main.bounds.size
+        let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
         
         // TODO have a layout helper.
-        let columns = 5
+        let columns = 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let itemWidth = floor((size.width - 2*LayoutHelpers.sideMargins) / CGFloat(columns))
+        let itemWidth = floor((width - 2*LayoutHelpers.sideMargins - LayoutHelpers.paddingH*(CGFloat(columns)-1)) / CGFloat(columns))
         let itemHeight = PictureCell.height(forWidth: itemWidth, imageAspectRatio: 1.5)
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = LayoutHelpers.paddingV
+        layout.minimumInteritemSpacing = LayoutHelpers.paddingH
         layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.vertMargins, left: LayoutHelpers.sideMargins, bottom: LayoutHelpers.vertMargins, right: LayoutHelpers.sideMargins)
         
         collection = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)

@@ -21,6 +21,9 @@ class MovieViewController: UIViewController {
         self.image = image
         
         super.init(nibName: nil, bundle: nil)
+        
+        title = movie.name
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(tapPlay))
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -36,7 +39,6 @@ class MovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rootView.title.text = movie.name
         rootView.overview.text = movie.overview
         rootView.image.image = image
         rootView.details.text = "Release date: \(movie.releaseDate)\nVote: \(movie.vote)"
@@ -56,12 +58,14 @@ class MovieViewController: UIViewController {
                 }
             }
         }
-        
-        rootView.play.addTarget(self, action: #selector(tapPlay), for: .primaryActionTriggered)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 
     func tapPlay() {
@@ -79,11 +83,9 @@ class MovieView: UIView {
     
     let background = UIImageView()
     let dim = UIView()
-    let title = UILabel()
     let overview = UILabel()
     let image = UIImageView()
     let details = UILabel()
-    let play = UIButton(type: .system)
     
     init() {
         super.init(frame: CGRect.zero)
@@ -91,17 +93,14 @@ class MovieView: UIView {
         backgroundColor = UIColor.black
         
         background.contentMode = .scaleAspectFill
+        background.clipsToBounds = true
         addSubview(background)
         
-        dim.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
         addSubview(dim)
-        
-        title.textColor = UIColor.white
-        title.font = UIFont.systemFont(ofSize: 60, weight: UIFontWeightThin)
-        addSubview(title)
-        
+    
         overview.textColor = UIColor.white
-        overview.font = UIFont.systemFont(ofSize: 30, weight: UIFontWeightLight)
+        overview.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightLight)
         overview.numberOfLines = 0
         addSubview(overview)
         
@@ -110,11 +109,8 @@ class MovieView: UIView {
         
         details.textColor = UIColor(white: 1, alpha: 0.7)
         details.numberOfLines = 0
-        details.font = UIFont.systemFont(ofSize: 25, weight: UIFontWeightLight)
+        details.font = UIFont.systemFont(ofSize: 11, weight: UIFontWeightLight)
         addSubview(details)
-        
-        play.setTitle("Play", for: .normal)
-        addSubview(play)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -129,13 +125,7 @@ class MovieView: UIView {
         background.frame = bounds
         dim.frame = bounds
         
-        // Top row.
-        title.frame = CGRect(x: LayoutHelpers.sideMargins,
-                             y: LayoutHelpers.vertMargins,
-                             width: w - 2*LayoutHelpers.sideMargins,
-                             height: ceil(title.font.lineHeight))
-        
-        // Image under it.
+        // Image under nav.
         let imageWidth = round(w * 0.25)
         let aspect: CGFloat
         if let image = image.image, image.size.width > 0 {
@@ -144,10 +134,10 @@ class MovieView: UIView {
             aspect = 0
         }
         let imageHeight = round(imageWidth * aspect)
-        image.frame = CGRect(x: LayoutHelpers.sideMargins, y: title.frame.maxY + 40, width: imageWidth, height: imageHeight)
+        image.frame = CGRect(x: LayoutHelpers.sideMargins, y: 64 + LayoutHelpers.vertMargins, width: imageWidth, height: imageHeight)
         
         // Details under image.
-        let detailsTop = image.frame.maxY + 40
+        let detailsTop = image.frame.maxY + 10
         let detailsBottom = h - LayoutHelpers.vertMargins
         let detailsWidth = imageWidth
         let maxDetailsHeight = detailsBottom - detailsTop
@@ -167,12 +157,6 @@ class MovieView: UIView {
                                 y: overviewTop,
                                 width: overviewWidth,
                                 height: overviewHeight)
-        
-        // Center bottom.
-        let playSize = play.intrinsicContentSize
-        play.frame = CGRect(origin: CGPoint(x: round(w/2 - playSize.width/2),
-                                            y: round(h - LayoutHelpers.vertMargins - playSize.height - 8)), // -8 to compensate for focus growth
-            size: playSize)
     }
     
 }

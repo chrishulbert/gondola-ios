@@ -30,8 +30,13 @@ class StateManager {
                 DispatchQueue.main.asyncAfter(deadline: .now() + effectiveDelay) {
                     let tv = TVViewController(metadata: metadata)
                     let movies = MoviesViewController(metadata: metadata)
+                    let tvNav = UINavigationController(rootViewController: tv)
+                    let moviesNav = UINavigationController(rootViewController: movies)
+                    moviesNav.navigationBar.barStyle = .blackOpaque
+                    tvNav.navigationBar.barStyle = .blackOpaque
                     let tab = UITabBarController()
-                    tab.viewControllers = [movies, tv]
+                    tab.viewControllers = [moviesNav, tvNav]
+                    tab.tabBar.barStyle = .blackOpaque
                     self.rootNav.setViewControllers([tab], animated: true)
                 }
             }

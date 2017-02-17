@@ -97,10 +97,10 @@
 				832DED051E568783009585CE /* LoadingViewController.swift */,
 				832DED061E568783009585CE /* MoviesViewController.swift */,
 				832DED071E568783009585CE /* MovieViewController.swift */,
-				832DED081E568783009585CE /* TVEpisodeViewController.swift */,
-				832DED091E568783009585CE /* TVSeasonEpisodesViewController.swift */,
-				832DED0A1E568783009585CE /* TVShowSeasonsViewController.swift */,
 				832DED0B1E568783009585CE /* TVViewController.swift */,
+				832DED0A1E568783009585CE /* TVShowSeasonsViewController.swift */,
+				832DED091E568783009585CE /* TVSeasonEpisodesViewController.swift */,
+				832DED081E568783009585CE /* TVEpisodeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

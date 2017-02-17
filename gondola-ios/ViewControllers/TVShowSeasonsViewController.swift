@@ -17,6 +17,9 @@ class TVShowSeasonsViewController: UIViewController {
         self.show = show
         
         super.init(nibName: nil, bundle: nil)
+        
+        title = show.name
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -37,7 +40,6 @@ class TVShowSeasonsViewController: UIViewController {
         rootView.collection.dataSource = self
         rootView.collection.delegate = self
         
-        rootView.title.text = show.name
         rootView.overview.text = show.overview
         
         // Load the backdrop.
@@ -112,7 +114,6 @@ class TVShowSeasonsView: UIView {
     
     let background = UIImageView()
     let dim = UIView()
-    let title = UILabel()
     let overview = UILabel()
     let collection: UICollectionView
     let layout = UICollectionViewFlowLayout()
@@ -122,28 +123,26 @@ class TVShowSeasonsView: UIView {
         layout.scrollDirection = .horizontal
         let itemWidth = PictureCell.width(forHeight: K.itemHeight, imageAspectRatio: 1.5)
         layout.itemSize = CGSize(width: itemWidth, height: K.itemHeight)
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = LayoutHelpers.paddingH
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: LayoutHelpers.sideMargins, bottom: LayoutHelpers.vertMargins, right: LayoutHelpers.sideMargins)
+        layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.paddingV, left: LayoutHelpers.sideMargins, bottom: LayoutHelpers.vertMargins + 50, right: LayoutHelpers.sideMargins)
         
         collection = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        collection.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
+        collection.backgroundColor = nil
+        collection.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         
         super.init(frame: CGRect.zero)
         
         background.contentMode = .scaleAspectFill
         background.alpha = 0
+        background.clipsToBounds = true
         addSubview(background)
         
-        dim.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
         addSubview(dim)
         
-        title.textColor = UIColor.white
-        title.font = UIFont.systemFont(ofSize: 60, weight: UIFontWeightThin)
-        addSubview(title)
-        
         overview.textColor = UIColor.white
-        overview.font = UIFont.systemFont(ofSize: 30, weight: UIFontWeightLight)
+        overview.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightLight)
         overview.numberOfLines = 0
         addSubview(overview)
         
@@ -166,10 +165,7 @@ class TVShowSeasonsView: UIView {
         
         dim.frame = CGRect(x: 0, y: 0, width: w, height: collection.frame.minY)
         
-        title.frame = CGRect(x: LayoutHelpers.sideMargins, y: LayoutHelpers.vertMargins,
-                             width: w - 2*LayoutHelpers.sideMargins, height: ceil(title.font.lineHeight))
-        
-        let overviewTop = title.frame.maxY + 40
+        let overviewTop = 64 + LayoutHelpers.vertMargins
         let overviewBottom = collection.frame.minY - LayoutHelpers.vertMargins
         let overviewWidth = (w - LayoutHelpers.sideMargins)/2
         let maxOverviewHeight = overviewBottom - overviewTop
