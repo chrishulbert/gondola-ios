@@ -79,7 +79,7 @@ struct ServiceHelpers {
     }
 
     struct K {
-        static let baseUrl = URL(string: "http://gondola")!
+        static let baseUrl = URL(string: "http://gondola.local")!
     }
 
     enum ServiceError: Error {
