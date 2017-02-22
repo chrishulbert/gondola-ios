@@ -424,7 +424,7 @@
 				DEVELOPMENT_TEAM = 99M38G59F6;
 				INFOPLIST_FILE = "gondola-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "au.com.splinter.gondola-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.splinter.gondola;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -437,7 +437,7 @@
 				DEVELOPMENT_TEAM = 99M38G59F6;
 				INFOPLIST_FILE = "gondola-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "au.com.splinter.gondola-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.splinter.gondola;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
