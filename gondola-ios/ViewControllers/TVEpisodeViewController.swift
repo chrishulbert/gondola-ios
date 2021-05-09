@@ -55,7 +55,7 @@ class TVEpisodeViewController: UIViewController {
         return .lightContent
     }
 
-    func tapPlay() {
+    @objc func tapPlay() {
         guard let url = ServiceHelpers.url(path: episode.media) else { return }
         let vc = AVPlayerViewController()
         vc.player = AVPlayer(url: url)
@@ -85,7 +85,7 @@ class TVEpisodeView: UIView {
         addSubview(dim)
         
         overview.textColor = UIColor.white
-        overview.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightLight)
+        overview.font = UIFont.systemFont(ofSize: 12, weight: .light)
         overview.numberOfLines = 0
         addSubview(overview)
 
@@ -94,7 +94,7 @@ class TVEpisodeView: UIView {
         
         details.textColor = UIColor(white: 1, alpha: 0.7)
         details.numberOfLines = 0
-        details.font = UIFont.systemFont(ofSize: 11, weight: UIFontWeightLight)
+        details.font = UIFont.systemFont(ofSize: 11, weight: .light)
         addSubview(details)
     }
     

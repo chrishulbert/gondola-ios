@@ -57,7 +57,7 @@ class PictureCell: UICollectionViewCell {
     }
     
     struct K {
-        static let labelFont = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+        static let labelFont = UIFont.systemFont(ofSize: 12, weight: .thin)
     }
         
 }

@@ -140,7 +140,7 @@ class TVSeasonEpisodesView: UIView {
         addSubview(dim)
         
         overview.textColor = UIColor.white
-        overview.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightLight)
+        overview.font = UIFont.systemFont(ofSize: 12, weight: .light)
         overview.numberOfLines = 0
         addSubview(overview)
         
