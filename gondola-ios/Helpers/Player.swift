@@ -13,18 +13,31 @@ import AVFoundation
 extension UIViewController {
     func pushPlayer(media: String) {
         guard let url = ServiceHelpers.url(path: media) else { return }
+        let presenter = self
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        GetBookmarkService.getBookmark(item: media, completion: { bookmark in
+            DispatchQueue.main.async {
+                UIApplication.shared.endIgnoringInteractionEvents()
+                
+                let player = AVPlayer(url: url)
+                let interval = CMTime(seconds: 10, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+                player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (time: CMTime) in
+                    SetBookmarkService.postBookmark(item: media, time: Int(time.seconds))
+                })
+                
+                if bookmark > 0 {
+                    let time = CMTime(seconds: Double(bookmark), preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+                    player.seek(to: time)
+                }
 
-        let player = AVPlayer(url: url)
-        let interval = CMTime(seconds: 10, preferredTimescale: CMTimeScale(NSEC_PER_SEC)) // Every 10s.
-        player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (time: CMTime) in
-            SetBookmarkService.postBookmark(item: media, time: Int(time.seconds))
-        })
+                let vc = AVPlayerViewController()
+                vc.player = player
 
-        let vc = AVPlayerViewController()
-        vc.player = player
-
-        present(vc, animated: true, completion: { [weak vc] in
-            vc?.player?.play()
+                presenter.present(vc, animated: true, completion: { [weak vc] in
+                    vc?.player?.play()
+                })
+            }
         })
     }
 }

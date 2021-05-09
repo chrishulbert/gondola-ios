@@ -17,7 +17,9 @@ struct GetBookmarkService {
         comps.queryItems = [URLQueryItem(name: "item", value: item)]
         let urlO = comps.url
         guard let url = urlO else { completion(0); return }
-        ServiceHelpers.jsonRequest(url: url, completion: { result in
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 1
+        ServiceHelpers.jsonRequest(request: request, completion: { result in
             switch result {
             case .success(let json):
                 let time = json["time"] as? Int ?? 0
