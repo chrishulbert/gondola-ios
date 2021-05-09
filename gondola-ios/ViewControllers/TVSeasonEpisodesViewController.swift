@@ -109,26 +109,25 @@ class TVSeasonEpisodesView: UIView {
     let background = UIImageView()
     let dim = UIView()
     let overview = UILabel()
+    let blur = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     let collection: UICollectionView
     let layout = UICollectionViewFlowLayout()
     
     init() {
         let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
-
-        // TODO have a layout helper.
+        
         layout.scrollDirection = .vertical
         let itemWidth = round(width/2) - LayoutHelpers.sideMargins - LayoutHelpers.paddingH
         let itemHeight = PictureCell.height(forWidth: itemWidth, imageAspectRatio: 9/16)
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = LayoutHelpers.paddingV
-        layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.vertMargins + 64,
-                                           left: LayoutHelpers.paddingH,
-                                           bottom: LayoutHelpers.vertMargins + 50,
+        layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.vertMargins,
+                                           left: LayoutHelpers.sideMargins,
+                                           bottom: LayoutHelpers.vertMargins,
                                            right: LayoutHelpers.sideMargins)
         
         collection = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         collection.backgroundColor = nil
-        collection.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         
         super.init(frame: CGRect.zero)
         
@@ -141,44 +140,42 @@ class TVSeasonEpisodesView: UIView {
         background.topAnchor.constraint(equalTo: topAnchor).isActive = true
         background.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
+        blur.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(blur)
+        blur.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        blur.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        blur.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(collection)
+        collection.widthAnchor.constraint(equalToConstant: layout.itemSize.width + layout.sectionInset.left + layout.sectionInset.right).isActive = true
+        collection.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+        collection.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        collection.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
+        blur.leadingAnchor.constraint(equalTo: collection.leadingAnchor).isActive = true
+
         dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        dim.translatesAutoresizingMaskIntoConstraints = false
         addSubview(dim)
-        
+        dim.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        dim.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        dim.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        dim.trailingAnchor.constraint(equalTo: collection.leadingAnchor).isActive = true
+
         overview.textColor = UIColor.white
         overview.font = UIFont.systemFont(ofSize: 12, weight: .light)
         overview.numberOfLines = 0
+        overview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(overview)
-        
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(collection)
+        overview.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: LayoutHelpers.sideMargins).isActive = true
+        overview.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: LayoutHelpers.vertMargins).isActive = true
+        overview.trailingAnchor.constraint(equalTo: dim.trailingAnchor, constant: -LayoutHelpers.sideMargins).isActive = true
+        overview.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor, constant: -LayoutHelpers.vertMargins).isActive = true
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let w = bounds.width
-        let h = bounds.height
-        
-        let collectionWidth = round(w/2)
-        collection.frame = CGRect(x: w - collectionWidth, y: 0, width: collectionWidth, height: h)
-        
-        dim.frame = CGRect(x: 0, y: 0, width: w - collectionWidth, height: h)
-        
-        let textWidth = w - collectionWidth - 2*LayoutHelpers.sideMargins
-        
-        let overviewTop = 64 + LayoutHelpers.vertMargins
-        let overviewBottom = h - 50 - LayoutHelpers.vertMargins
-        let overviewWidth = textWidth
-        let maxOverviewHeight = overviewBottom - overviewTop
-        let textOverviewHeight = ceil(overview.sizeThatFits(CGSize(width: overviewWidth, height: 999)).height)
-        let overviewHeight = min(textOverviewHeight, maxOverviewHeight)
-        overview.frame = CGRect(x: LayoutHelpers.sideMargins,
-                                y: overviewTop,
-                                width: overviewWidth,
-                                height: overviewHeight)
     }
     
 }
