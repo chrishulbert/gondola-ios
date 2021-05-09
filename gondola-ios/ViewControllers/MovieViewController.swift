@@ -94,69 +94,51 @@ class MovieView: UIView {
         
         background.contentMode = .scaleAspectFill
         background.clipsToBounds = true
+        background.translatesAutoresizingMaskIntoConstraints = false
         addSubview(background)
-        
+        background.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        background.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        background.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        background.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
         dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        dim.translatesAutoresizingMaskIntoConstraints = false
         addSubview(dim)
-    
-        overview.textColor = UIColor.white
-        overview.font = UIFont.systemFont(ofSize: 12, weight: .light)
-        overview.numberOfLines = 0
-        addSubview(overview)
+        dim.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        dim.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        dim.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        dim.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
         addSubview(image)
-        
+        image.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: LayoutHelpers.sideMargins).isActive = true
+        image.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: LayoutHelpers.vertMargins).isActive = true
+        image.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25, constant: 0).isActive = true
+        image.heightAnchor.constraint(equalTo: image.widthAnchor, multiplier: 16/9, constant: 0).isActive = true
+        image.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.5).isActive = true
+
         details.textColor = UIColor(white: 1, alpha: 0.7)
         details.numberOfLines = 0
         details.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        details.translatesAutoresizingMaskIntoConstraints = false
         addSubview(details)
+        details.leadingAnchor.constraint(equalTo: image.leadingAnchor).isActive = true
+        details.trailingAnchor.constraint(equalTo: image.trailingAnchor).isActive = true
+        details.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10).isActive = true
+        
+        overview.textColor = UIColor.white
+        overview.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        overview.numberOfLines = 0
+        overview.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(overview)
+        overview.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: LayoutHelpers.sideMargins).isActive = true
+        overview.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -LayoutHelpers.sideMargins).isActive = true
+        overview.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: LayoutHelpers.vertMargins).isActive = true
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let w = bounds.width
-        let h = bounds.height
-        
-        background.frame = bounds
-        dim.frame = bounds
-        
-        // Image under nav.
-        let imageWidth = round(w * 0.25)
-        let aspect: CGFloat
-        if let image = image.image, image.size.width > 0 {
-            aspect = image.size.height / image.size.width
-        } else {
-            aspect = 0
-        }
-        let imageHeight = round(imageWidth * aspect)
-        image.frame = CGRect(x: LayoutHelpers.sideMargins, y: 64 + LayoutHelpers.vertMargins, width: imageWidth, height: imageHeight)
-        
-        // Details under image.
-        let detailsTop = image.frame.maxY + 10
-        let detailsBottom = h - LayoutHelpers.vertMargins
-        let detailsWidth = imageWidth
-        let maxDetailsHeight = detailsBottom - detailsTop
-        let textDetailsHeight = ceil(details.sizeThatFits(CGSize(width: detailsWidth, height: 999)).height)
-        let detailsHeight = min(textDetailsHeight, maxDetailsHeight)
-        details.frame = CGRect(x: image.frame.minX, y: detailsTop, width: detailsWidth, height: detailsHeight)
-        
-        let overviewLeft = image.frame.maxX + LayoutHelpers.sideMargins
-        let overviewRight = w - LayoutHelpers.sideMargins
-        let overviewTop = image.frame.minY
-        let overviewBottom = h - LayoutHelpers.vertMargins
-        let overviewWidth = overviewRight - overviewLeft
-        let maxOverviewHeight = overviewBottom - overviewTop
-        let textOverviewHeight = ceil(overview.sizeThatFits(CGSize(width: overviewWidth, height: 999)).height)
-        let overviewHeight = min(textOverviewHeight, maxOverviewHeight)
-        overview.frame = CGRect(x: overviewLeft,
-                                y: overviewTop,
-                                width: overviewWidth,
-                                height: overviewHeight)
     }
     
 }
