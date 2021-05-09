@@ -22,6 +22,9 @@
 		832DED181E568790009585CE /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DED171E568790009585CE /* PictureCell.swift */; };
 		832DED1B1E56879D009585CE /* LayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DED1A1E56879D009585CE /* LayoutHelpers.swift */; };
 		836211F4264780360052786F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836211F3264780360052786F /* LaunchScreen.storyboard */; };
+		836211F7264794840052786F /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 836211F5264794840052786F /* Barlow-Regular.ttf */; };
+		836211F8264794840052786F /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 836211F6264794840052786F /* Barlow-SemiBold.ttf */; };
+		836211FA264795210052786F /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211F9264795210052786F /* Fonts.swift */; };
 		8396787C1E56822D00A6B6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8396787B1E56822D00A6B6B2 /* AppDelegate.swift */; };
 		839678831E56822D00A6B6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839678821E56822D00A6B6B2 /* Assets.xcassets */; };
 		839678911E56822D00A6B6B2 /* gondola_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839678901E56822D00A6B6B2 /* gondola_iosTests.swift */; };
@@ -53,6 +56,9 @@
 		832DED171E568790009585CE /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		832DED1A1E56879D009585CE /* LayoutHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutHelpers.swift; sourceTree = "<group>"; };
 		836211F3264780360052786F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		836211F5264794840052786F /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Regular.ttf"; sourceTree = "<group>"; };
+		836211F6264794840052786F /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		836211F9264795210052786F /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		839678781E56822D00A6B6B2 /* gondola-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gondola-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8396787B1E56822D00A6B6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839678821E56822D00A6B6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				832DED1A1E56879D009585CE /* LayoutHelpers.swift */,
+				836211F9264795210052786F /* Fonts.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -156,6 +163,8 @@
 				832DED041E568783009585CE /* ViewControllers */,
 				832DECFB1E56871B009585CE /* Services */,
 				8396787B1E56822D00A6B6B2 /* AppDelegate.swift */,
+				836211F5264794840052786F /* Barlow-Regular.ttf */,
+				836211F6264794840052786F /* Barlow-SemiBold.ttf */,
 				836211F3264780360052786F /* LaunchScreen.storyboard */,
 				839678821E56822D00A6B6B2 /* Assets.xcassets */,
 				839678871E56822D00A6B6B2 /* Info.plist */,
@@ -258,6 +267,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				839678831E56822D00A6B6B2 /* Assets.xcassets in Resources */,
+				836211F7264794840052786F /* Barlow-Regular.ttf in Resources */,
+				836211F8264794840052786F /* Barlow-SemiBold.ttf in Resources */,
 				836211F4264780360052786F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836211FA264795210052786F /* Fonts.swift in Sources */,
 				832DED031E56871B009585CE /* ServiceHelpers.swift in Sources */,
 				832DED1B1E56879D009585CE /* LayoutHelpers.swift in Sources */,
 				832DED011E56871B009585CE /* Models.swift in Sources */,

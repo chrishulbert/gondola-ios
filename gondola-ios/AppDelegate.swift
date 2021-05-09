@@ -29,6 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         StateManager.shared.rootNav = nav
         StateManager.shared.appLaunch(loading: loading)
         
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.navTitle,
+        ]
+        UIBarButtonItem.appearance().setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont.barButton,
+        ], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont.tabItem,
+        ], for: .normal)
+
 //        TODO make cells fade in when images load.
 
         return true
