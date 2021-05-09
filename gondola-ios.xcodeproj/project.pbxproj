@@ -28,6 +28,7 @@
 		836211FC2647986B0052786F /* Sha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211FB2647986B0052786F /* Sha.swift */; };
 		836211FE2647995D0052786F /* SetBookmarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211FD2647995D0052786F /* SetBookmarkService.swift */; };
 		8362120026479B980052786F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211FF26479B980052786F /* Player.swift */; };
+		8362120226479CEC0052786F /* GetBookmarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8362120126479CEC0052786F /* GetBookmarkService.swift */; };
 		8396787C1E56822D00A6B6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8396787B1E56822D00A6B6B2 /* AppDelegate.swift */; };
 		839678831E56822D00A6B6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839678821E56822D00A6B6B2 /* Assets.xcassets */; };
 		839678911E56822D00A6B6B2 /* gondola_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839678901E56822D00A6B6B2 /* gondola_iosTests.swift */; };
@@ -65,6 +66,7 @@
 		836211FB2647986B0052786F /* Sha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sha.swift; sourceTree = "<group>"; };
 		836211FD2647995D0052786F /* SetBookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBookmarkService.swift; sourceTree = "<group>"; };
 		836211FF26479B980052786F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		8362120126479CEC0052786F /* GetBookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBookmarkService.swift; sourceTree = "<group>"; };
 		839678781E56822D00A6B6B2 /* gondola-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gondola-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8396787B1E56822D00A6B6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839678821E56822D00A6B6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				832DECFE1E56871B009585CE /* Result.swift */,
 				832DECFF1E56871B009585CE /* ServiceHelpers.swift */,
 				836211FD2647995D0052786F /* SetBookmarkService.swift */,
+				8362120126479CEC0052786F /* GetBookmarkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			files = (
 				836211FA264795210052786F /* Fonts.swift in Sources */,
 				832DED031E56871B009585CE /* ServiceHelpers.swift in Sources */,
+				8362120226479CEC0052786F /* GetBookmarkService.swift in Sources */,
 				832DED1B1E56879D009585CE /* LayoutHelpers.swift in Sources */,
 				832DED011E56871B009585CE /* Models.swift in Sources */,
 				832DED001E56871B009585CE /* MetadataService.swift in Sources */,

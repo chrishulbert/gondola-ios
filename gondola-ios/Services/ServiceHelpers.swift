@@ -20,12 +20,23 @@ struct ServiceHelpers {
             completion(.failure(ServiceError.badUrl))
             return
         }
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        jsonRequest(url: url, completion: completion)
+    }
+
+    /// Returns on any thread.
+    static func jsonRequest(url: URL, completion: @escaping (JsonResult) -> ()) {
+        let request = URLRequest(url: url)
+        jsonRequest(request: request, completion: completion)
+    }
+
+    /// Returns on any thread.
+    static func jsonRequest(request: URLRequest, completion: @escaping (JsonResult) -> ()) {
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             completion(jsonResult(data: data, response: response, error: error))
         }
         task.resume()
     }
-    
+
     static func imageRequest(path: String, completion: @escaping (ImageResult) -> ()) {
         guard let url = url(path: path) else {
             completion(.failure(ServiceError.badUrl))
