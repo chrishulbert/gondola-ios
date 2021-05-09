@@ -46,7 +46,7 @@ struct ServiceHelpers {
         if let error = error {
             return .failure(error)
         }
-        if let response = response as? HTTPURLResponse, response.statusCode > 400 {
+        if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
             return .failure(ServiceError.httpError(response.statusCode))
         }
         guard let data = data else {

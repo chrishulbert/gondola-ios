@@ -25,6 +25,9 @@
 		836211F7264794840052786F /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 836211F5264794840052786F /* Barlow-Regular.ttf */; };
 		836211F8264794840052786F /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 836211F6264794840052786F /* Barlow-SemiBold.ttf */; };
 		836211FA264795210052786F /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211F9264795210052786F /* Fonts.swift */; };
+		836211FC2647986B0052786F /* Sha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211FB2647986B0052786F /* Sha.swift */; };
+		836211FE2647995D0052786F /* SetBookmarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211FD2647995D0052786F /* SetBookmarkService.swift */; };
+		8362120026479B980052786F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836211FF26479B980052786F /* Player.swift */; };
 		8396787C1E56822D00A6B6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8396787B1E56822D00A6B6B2 /* AppDelegate.swift */; };
 		839678831E56822D00A6B6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839678821E56822D00A6B6B2 /* Assets.xcassets */; };
 		839678911E56822D00A6B6B2 /* gondola_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839678901E56822D00A6B6B2 /* gondola_iosTests.swift */; };
@@ -59,6 +62,9 @@
 		836211F5264794840052786F /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Regular.ttf"; sourceTree = "<group>"; };
 		836211F6264794840052786F /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
 		836211F9264795210052786F /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		836211FB2647986B0052786F /* Sha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sha.swift; sourceTree = "<group>"; };
+		836211FD2647995D0052786F /* SetBookmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBookmarkService.swift; sourceTree = "<group>"; };
+		836211FF26479B980052786F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		839678781E56822D00A6B6B2 /* gondola-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gondola-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8396787B1E56822D00A6B6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839678821E56822D00A6B6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 				832DECFD1E56871B009585CE /* Models.swift */,
 				832DECFE1E56871B009585CE /* Result.swift */,
 				832DECFF1E56871B009585CE /* ServiceHelpers.swift */,
+				836211FD2647995D0052786F /* SetBookmarkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -132,6 +139,8 @@
 			children = (
 				832DED1A1E56879D009585CE /* LayoutHelpers.swift */,
 				836211F9264795210052786F /* Fonts.swift */,
+				836211FB2647986B0052786F /* Sha.swift */,
+				836211FF26479B980052786F /* Player.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -301,7 +310,10 @@
 				832DED111E568783009585CE /* TVShowSeasonsViewController.swift in Sources */,
 				832DED0D1E568783009585CE /* MoviesViewController.swift in Sources */,
 				832DED0C1E568783009585CE /* LoadingViewController.swift in Sources */,
+				836211FC2647986B0052786F /* Sha.swift in Sources */,
 				832DED181E568790009585CE /* PictureCell.swift in Sources */,
+				8362120026479B980052786F /* Player.swift in Sources */,
+				836211FE2647995D0052786F /* SetBookmarkService.swift in Sources */,
 				832DED0F1E568783009585CE /* TVEpisodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

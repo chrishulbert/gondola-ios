@@ -8,8 +8,6 @@
 //  This shows the details of a movie and lets you play it.
 
 import UIKit
-import AVKit
-import AVFoundation
 
 class MovieViewController: UIViewController {
     
@@ -69,12 +67,7 @@ class MovieViewController: UIViewController {
     }
 
     @objc func tapPlay() {
-        guard let url = ServiceHelpers.url(path: movie.media) else { return }
-        let vc = AVPlayerViewController()
-        vc.player = AVPlayer(url: url)
-        present(vc, animated: true, completion: { [weak vc] in
-            vc?.player?.play()
-        })
+        pushPlayer(media: movie.media)
     }
     
 }

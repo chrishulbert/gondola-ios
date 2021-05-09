@@ -8,8 +8,6 @@
 //  This shows the details of an episode and lets you play it.
 
 import UIKit
-import AVKit
-import AVFoundation
 
 class TVEpisodeViewController: UIViewController {
     
@@ -56,12 +54,7 @@ class TVEpisodeViewController: UIViewController {
     }
 
     @objc func tapPlay() {
-        guard let url = ServiceHelpers.url(path: episode.media) else { return }
-        let vc = AVPlayerViewController()
-        vc.player = AVPlayer(url: url)
-        present(vc, animated: true, completion: { [weak vc] in
-            vc?.player?.play()
-        })
+        pushPlayer(media: episode.media)
     }
     
 }
