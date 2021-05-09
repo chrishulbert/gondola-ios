@@ -125,7 +125,10 @@ class TVShowSeasonsView: UIView {
         layout.itemSize = CGSize(width: itemWidth, height: K.itemHeight)
         layout.minimumLineSpacing = LayoutHelpers.paddingH
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.paddingV, left: LayoutHelpers.sideMargins, bottom: LayoutHelpers.vertMargins + 50, right: LayoutHelpers.sideMargins)
+        layout.sectionInset = UIEdgeInsets(top: LayoutHelpers.paddingV,
+                                           left: LayoutHelpers.sideMargins,
+                                           bottom: LayoutHelpers.vertMargins,
+                                           right: LayoutHelpers.sideMargins)
         
         collection = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         collection.backgroundColor = nil
@@ -138,45 +141,42 @@ class TVShowSeasonsView: UIView {
         background.contentMode = .scaleAspectFill
         background.alpha = 0
         background.clipsToBounds = true
+        background.translatesAutoresizingMaskIntoConstraints = false
         addSubview(background)
-        
+        background.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        background.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        background.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        background.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
         dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        dim.translatesAutoresizingMaskIntoConstraints = false
         addSubview(dim)
+        dim.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        dim.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        dim.topAnchor.constraint(equalTo: topAnchor).isActive = true
         
         overview.textColor = UIColor.white
         overview.font = UIFont.systemFont(ofSize: 12, weight: .light)
         overview.numberOfLines = 0
+        overview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(overview)
-        
+        overview.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: LayoutHelpers.sideMargins).isActive = true
+        overview.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -LayoutHelpers.sideMargins).isActive = true
+        overview.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: LayoutHelpers.vertMargins).isActive = true
+
+        collection.translatesAutoresizingMaskIntoConstraints = false
         addSubview(collection)
+        collection.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        collection.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        collection.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collection.heightAnchor.constraint(equalToConstant: K.itemHeight + layout.sectionInset.top + layout.sectionInset.bottom).isActive = true
+
+        dim.bottomAnchor.constraint(equalTo: collection.topAnchor).isActive = true
+        overview.bottomAnchor.constraint(lessThanOrEqualTo: collection.topAnchor, constant: -LayoutHelpers.vertMargins).isActive = true
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let w = bounds.width
-        let h = bounds.height
-        
-        background.frame = bounds
-        
-        let collectionHeight = K.itemHeight + layout.sectionInset.top + layout.sectionInset.bottom
-        collection.frame = CGRect(x: 0, y: h - collectionHeight, width: w, height: collectionHeight)
-        
-        dim.frame = CGRect(x: 0, y: 0, width: w, height: collection.frame.minY)
-        
-        let overviewTop = 64 + LayoutHelpers.vertMargins
-        let overviewBottom = collection.frame.minY - LayoutHelpers.vertMargins
-        let overviewWidth = w - LayoutHelpers.sideMargins*2
-        let maxOverviewHeight = overviewBottom - overviewTop
-        let textOverviewHeight = ceil(overview.sizeThatFits(CGSize(width: overviewWidth, height: 999)).height)
-        let overviewHeight = min(textOverviewHeight, maxOverviewHeight)
-        overview.frame = CGRect(x: LayoutHelpers.sideMargins,
-                                y: overviewTop,
-                                width: overviewWidth,
-                                height: overviewHeight)
     }
     
     struct K {

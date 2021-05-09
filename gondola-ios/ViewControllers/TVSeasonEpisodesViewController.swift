@@ -134,8 +134,13 @@ class TVSeasonEpisodesView: UIView {
         
         background.contentMode = .scaleAspectFill
         background.clipsToBounds = true
+        background.translatesAutoresizingMaskIntoConstraints = false
         addSubview(background)
-        
+        background.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        background.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        background.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        background.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
         dim.backgroundColor = UIColor(white: 0, alpha: 0.6)
         addSubview(dim)
         
@@ -144,6 +149,7 @@ class TVSeasonEpisodesView: UIView {
         overview.numberOfLines = 0
         addSubview(overview)
         
+        collection.translatesAutoresizingMaskIntoConstraints = false
         addSubview(collection)
     }
     
@@ -155,8 +161,6 @@ class TVSeasonEpisodesView: UIView {
         super.layoutSubviews()
         let w = bounds.width
         let h = bounds.height
-        
-        background.frame = bounds
         
         let collectionWidth = round(w/2)
         collection.frame = CGRect(x: w - collectionWidth, y: 0, width: collectionWidth, height: h)
