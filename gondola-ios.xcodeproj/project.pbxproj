@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		832DED001E56871B009585CE /* MetadataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFC1E56871B009585CE /* MetadataService.swift */; };
 		832DED011E56871B009585CE /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFD1E56871B009585CE /* Models.swift */; };
-		832DED021E56871B009585CE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFE1E56871B009585CE /* Result.swift */; };
 		832DED031E56871B009585CE /* ServiceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DECFF1E56871B009585CE /* ServiceHelpers.swift */; };
 		832DED0C1E568783009585CE /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DED051E568783009585CE /* LoadingViewController.swift */; };
 		832DED0D1E568783009585CE /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DED061E568783009585CE /* MoviesViewController.swift */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		832DECFC1E56871B009585CE /* MetadataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataService.swift; sourceTree = "<group>"; };
 		832DECFD1E56871B009585CE /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		832DECFE1E56871B009585CE /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		832DECFF1E56871B009585CE /* ServiceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceHelpers.swift; sourceTree = "<group>"; };
 		832DED051E568783009585CE /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		832DED061E568783009585CE /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 			children = (
 				832DECFC1E56871B009585CE /* MetadataService.swift */,
 				832DECFD1E56871B009585CE /* Models.swift */,
-				832DECFE1E56871B009585CE /* Result.swift */,
 				832DECFF1E56871B009585CE /* ServiceHelpers.swift */,
 				836211FD2647995D0052786F /* SetBookmarkService.swift */,
 				8362120126479CEC0052786F /* GetBookmarkService.swift */,
@@ -306,7 +303,6 @@
 				832DED011E56871B009585CE /* Models.swift in Sources */,
 				832DED001E56871B009585CE /* MetadataService.swift in Sources */,
 				832DED0E1E568783009585CE /* MovieViewController.swift in Sources */,
-				832DED021E56871B009585CE /* Result.swift in Sources */,
 				832DED151E568788009585CE /* StateManager.swift in Sources */,
 				832DED101E568783009585CE /* TVSeasonEpisodesViewController.swift in Sources */,
 				832DED121E568783009585CE /* TVViewController.swift in Sources */,

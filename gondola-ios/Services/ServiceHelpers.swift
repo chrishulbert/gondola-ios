@@ -11,8 +11,8 @@ import UIKit
 
 struct ServiceHelpers {
     
-    typealias JsonResult = Result<[AnyHashable: Any]>
-    typealias ImageResult = Result<UIImage>
+    typealias JsonResult = Result<[AnyHashable: Any], Error>
+    typealias ImageResult = Result<UIImage, Error>
     
     /// Returns on any thread.
     static func jsonRequest(path: String, completion: @escaping (JsonResult) -> ()) {

@@ -10,7 +10,7 @@ import Foundation
 
 struct MetadataService {
     
-    typealias MetadataResult = Result<GondolaMetadata>
+    typealias MetadataResult = Result<GondolaMetadata, Error>
     
     static func request(completion: @escaping (MetadataResult) -> ()) {
         ServiceHelpers.jsonRequest(path: "metadata.json") {
