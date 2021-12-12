@@ -83,6 +83,26 @@ extension TVViewController: UICollectionViewDataSource {
         
         return cell
     }
+    
+    func indexTitles(for collectionView: UICollectionView) -> [String]? {
+        var firsts: Set<Character> = []
+        for show in metadata.tvShows {
+            if let c = show.name.first {
+                firsts.insert(c)
+            }
+        }
+        return firsts.sorted().map { String($0) }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, indexPathForIndexTitle title: String, at index: Int) -> IndexPath {
+        for (i, show) in metadata.tvShows.enumerated() {
+            if show.name.hasPrefix(title) {
+                return IndexPath(item: i, section: 0)
+            }
+        }
+        return IndexPath(item: 0, section: 0)
+    }
+
 
 }
 
